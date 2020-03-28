@@ -44,5 +44,13 @@ namespace csharp
 
                 );
         }
+        [Test]
+        public void Should_Keep_The_Same_Quality_Value_When_The_Item_Is_Sulfuras()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 1, Quality = 40 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(40, Items[0].Quality);
+        }
     }
 }
