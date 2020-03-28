@@ -60,21 +60,14 @@ namespace csharp
             app.UpdateQuality();
             Assert.AreEqual(41, Items[0].Quality);
         }
-        [Test]
-        public void Should_Decrease_The_Quality_Value_When_The_Item_Is_Dexterity_Vest()
+        [TestCase("Elixir of the Mongoose", 40, 39)]
+        [TestCase("+5 Dexterity Vest", 40, 39)]
+        public void Should_Decrease_The_Quality_Value_When_The_Item_Is_Not_AgedBrie_And_Not_BackStage_Passes_And_Not_Sulfuras_The_Sell_By_Date_Has_Passed(string itemName, int ItemQuality, int ItemExpectedQuality)
         {
-            IList<Item> Items = new List<Item> { new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 40 } };
+            IList<Item> Items = new List<Item> { new Item { Name = itemName, SellIn = 10, Quality = ItemQuality } };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
-            Assert.AreEqual(39, Items[0].Quality);
-        }
-        [Test]
-        public void Should_Decrease_The_Quality_Value_When_The_Item_Is_Elixir_of_the_Mongoose()
-        {
-            IList<Item> Items = new List<Item> { new Item { Name = "Elixir of the Mongoose", SellIn = 10, Quality = 40 } };
-            GildedRose app = new GildedRose(Items);
-            app.UpdateQuality();
-            Assert.AreEqual(39, Items[0].Quality);
+            Assert.AreEqual(ItemExpectedQuality, Items[0].Quality);
         }
         [TestCase("Elixir of the Mongoose", 40, 38)]
         [TestCase("+5 Dexterity Vest", 40, 38)]
