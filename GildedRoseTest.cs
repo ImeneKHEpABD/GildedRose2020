@@ -76,5 +76,13 @@ namespace csharp
             app.UpdateQuality();
             Assert.AreEqual(39, Items[0].Quality);
         }
+        [Test]
+        public void Should_Decrease_The_Quality_Value_Twice_When_The_Item_Is_Dexterity_Vest_And_The_Sell_By_Date_Has_Passed()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "+5 Dexterity Vest", SellIn = -1, Quality = 40 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(38, Items[0].Quality);
+        }
     }
 }
