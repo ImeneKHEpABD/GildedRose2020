@@ -34,5 +34,15 @@ namespace csharp
 
                 );
         }
+        [Test]
+        public void Should_Return_50_As_Quality_When_Current_Quality_Is_Equal_To_50_And_Item_Is_A_Backstage_Passes()
+        {
+            IList<Item> Items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 1, Quality = 50 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(50, Items[0].Quality
+
+                );
+        }
     }
 }
